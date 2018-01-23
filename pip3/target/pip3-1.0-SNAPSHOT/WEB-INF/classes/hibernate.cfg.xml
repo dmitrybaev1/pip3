@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:oracle:thin:@localhost:9999:orbis</property>
+        <property name="connection.url">jdbc:oracle:thin:@helios.cs.ifmo.ru:1521:orbis</property>
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="connection.username">s223868</property>
         <property name="connection.password">2SYpkYpv</property>
