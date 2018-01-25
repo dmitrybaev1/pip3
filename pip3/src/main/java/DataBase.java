@@ -64,10 +64,26 @@ public class DataBase implements java.io.Serializable {
         List points = new ArrayList<PointsEntity>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            Query q = session.createQuery("from PointsEntity p");
+            points = q.list();
+        }  catch (HibernateException e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return points;
+    }
+    public List getAllOrder() {
+        Session session = null;
+        List points = new ArrayList<PointsEntity>();
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             Query q = session.createQuery("from PointsEntity p order by p.id");
             points = q.list();
         }  catch (HibernateException e) {
-             e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

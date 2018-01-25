@@ -98,6 +98,7 @@
                     <p>
                         <h:inputText id="r" value="#{checkArea.r}" required="true" onclick="draw();" onsubmit="resetMesR();" onchange="draw();resetMesR();">
                             <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
+                            <f:ajax event="valueChange" render="dt"/>
                         </h:inputText>
                     </p>
                 </td>
