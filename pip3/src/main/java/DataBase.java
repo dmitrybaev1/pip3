@@ -59,13 +59,15 @@ public class DataBase implements java.io.Serializable {
             }
         }
     }
-    public List getAll() {
+    public void update(long id,Double r,String result){
         Session session = null;
-        List points = new ArrayList<PointsEntity>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            Query q = session.createQuery("from PointsEntity p");
-            points = q.list();
+            Query q = session.createQuery("update PointsEntity set r=:r_param,result=:res_param where id=:id_param");
+            q.setParameter("r_param",r);
+            q.setParameter("res_param",result);
+            q.setParameter("id_param",id);
+            q.executeUpdate();
         }  catch (HibernateException e) {
             e.printStackTrace();
         } finally {
@@ -73,9 +75,8 @@ public class DataBase implements java.io.Serializable {
                 session.close();
             }
         }
-        return points;
     }
-    public List getAllOrder() {
+    public List getAll() {
         Session session = null;
         List points = new ArrayList<PointsEntity>();
         try {

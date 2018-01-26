@@ -45,16 +45,15 @@ public class CheckArea implements java.io.Serializable {
     }
     public List getResponse(){
         List response;
-        response = dataBase.getAllOrder();
+        response = dataBase.getAll();
         if(response!=null) {
-            clear();
             for (int i = 0; i < response.size(); i++) {
                 PointsEntity pe = (PointsEntity) response.get(i);
                 pe.setR(getR());
                 pe.setResult(check(pe.getX(),pe.getY(),pe.getR()));
-                dataBase.add(pe.getX(), pe.getY(), pe.getR(), pe.getResult());
+                dataBase.update(pe.getId(),pe.getR(),pe.getResult());
             }
-            response = dataBase.getAllOrder();
+            response = dataBase.getAll();
         }
         return response;
     }
